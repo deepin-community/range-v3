@@ -1,0 +1,27 @@
+Description: Work around an error with GCC 11
+/build/range-v3-0.12.0/include/concepts/concepts.hpp:471:5: error: satisfaction of atomic constraint 'requires(T& t, T& u) {(concepts::<unnamed>::swap)(t, u);} [with T = S]' depends on itself
+Bug: https://github.com/ericniebler/range-v3/issues/1672
+Author: Enrico Seiler <enrico.seiler@hotmail.de>
+Acked-by: Nicholas Guriev <guriev-ns@ya.ru>
+Last-Update: Thu, 23 Jun 2022 19:12:41 +0300
+
+--- a/include/range/v3/utility/any.hpp
++++ b/include/range/v3/utility/any.hpp
+@@ -123,7 +123,7 @@ namespace ranges
+     public:
+         any() noexcept = default;
+         template(typename TRef, typename T = detail::decay_t<TRef>)(
+-            requires copyable<T> AND (!same_as<T, any>)) //
++            requires copy_constructible<T> AND (!same_as<T, any>)) //
+         any(TRef && t)
+           : ptr_(new impl<T>(static_cast<TRef &&>(t)))
+         {}
+@@ -138,7 +138,7 @@ namespace ranges
+             return *this;
+         }
+         template(typename TRef, typename T = detail::decay_t<TRef>)(
+-            requires copyable<T> AND (!same_as<T, any>)) //
++            requires copy_constructible<T> AND (!same_as<T, any>)) //
+         any & operator=(TRef && t)
+         {
+             any{static_cast<TRef &&>(t)}.swap(*this);

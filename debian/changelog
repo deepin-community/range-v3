@@ -1,5 +1,121 @@
-template-repository (1.0-1) unstable; urgency=medium
+range-v3 (0.12.0-1) unstable; urgency=medium
 
-  * Initial release
+  * New upstream release.
+  * Remove accepted patches,
+    - Detection-of-concepts.patch
+    - Workaround-premature-instantiation.patch
+  * Replace gcc-11.2.patch with rewritten Fix-circular-swap.patch.
+  * Bump Standards-Version to 4.6.1, no required changes.
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Nicholas Guriev <guriev-ns@ya.ru>  Fri, 24 Jun 2022 18:52:54 +0300
+
+range-v3 (0.11.0-2) unstable; urgency=medium
+
+  * Reupload the fix to unstable.
+  * Bump Standards-Version to 4.6.0, no required changes.
+
+ -- Nicholas Guriev <guriev-ns@ya.ru>  Wed, 01 Dec 2021 00:06:04 +0300
+
+range-v3 (0.11.0-1.1) unstable; urgency=high
+
+  * Non-maintainer upload.
+  * Apply suggested fix for gcc 11.2. Closes: #997289.
+
+ -- Michael R. Crusoe <crusoe@debian.org>  Sat, 13 Nov 2021 11:26:59 +0100
+
+range-v3 (0.11.0-1) unstable; urgency=medium
+
+  [ Nicholas Guriev ]
+  * New upstream release (closes: #968053).
+    - Adjust build scripts for GCC 10 (closes: #966900).
+  * Patches:
+    - Remove no longer needed Strip-doc-from-path.patch.
+    - Import Detection-of-concepts.patch from upstream Git.
+    - Add Workaround-premature-instantiation.patch based on upstream commit.
+  * Update DebHelper compatibility level to 13.
+  * Bump standards version to 4.5.0, no required changes.
+
+  [ Michael R. Crusoe ]
+  * Add upstream metadata.
+
+ -- Nicholas Guriev <guriev-ns@ya.ru>  Tue, 18 Aug 2020 09:46:44 +0300
+
+range-v3 (0.10.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Add Strip-doc-from-path.patch to avoid dependency on build directory.
+  * Bump Standards-Version to 4.4.1, no changes related to this.
+
+ -- Nicholas Guriev <guriev-ns@ya.ru>  Fri, 20 Dec 2019 14:54:44 +0300
+
+range-v3 (0.9.1-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Nicholas Guriev <guriev-ns@ya.ru>  Wed, 04 Sep 2019 00:04:35 +0300
+
+range-v3 (0.9.0-1~exp1) experimental; urgency=medium
+
+  * New upstream release.
+    - Fixes FTBFS with GCC 9 (closes: #934838).
+    - Removes support of C++11.
+  * New build dependency, Boost, to build the calendar example.
+  * Delete Check-Wno-flags.patch as applied by upstream.
+  * Remove workaround with -Wno-error=maybe-uninitialized.
+
+ -- Nicholas Guriev <guriev-ns@ya.ru>  Sat, 31 Aug 2019 09:46:13 +0300
+
+range-v3 (0.5.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump debhelper compatibility level to 12, no related changes.
+  * Bump standards version to 4.4.0, no related changes.
+
+ -- Nicholas Guriev <guriev-ns@ya.ru>  Fri, 02 Aug 2019 17:17:56 +0300
+
+range-v3 (0.4.0-2) unstable; urgency=medium
+
+  * Fix FTBFS with GCC 8.3.0 (closes: #926218).
+    - Ignore false positive warning "maybe-uninitialized"
+    - Rewrite the ranges_append_flag macro to avoid errors "unrecognized
+      command line option".
+
+ -- Nicholas Guriev <guriev-ns@ya.ru>  Sat, 27 Apr 2019 09:53:30 +0300
+
+range-v3 (0.4.0-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Nicholas Guriev <guriev-ns@ya.ru>  Wed, 14 Nov 2018 21:34:48 +0300
+
+range-v3 (0.3.7-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump standards version to 4.2.1, no changes for this.
+
+ -- Nicholas Guriev <guriev-ns@ya.ru>  Mon, 01 Oct 2018 08:49:19 +0300
+
+range-v3 (0.3.6-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump debhelper version to 11 and standards version to 4.1.5.
+    - Add the Rules-Requires-Root field into debian/control.
+    - Move the HTML documentation to the main package.
+  * Move cmake build dependency to Build-Depends-Arch list.
+
+ -- Nicholas Guriev <guriev-ns@ya.ru>  Sat, 07 Jul 2018 13:26:34 +0300
+
+range-v3 (0.3.5-1) unstable; urgency=medium
+
+  * New upstream release, remove all unneeded patches.
+  * Bump standards version, no changes for this.
+  * Migrate Git repository to salsa.debian.org.
+  * Add `Multi-Arch: foreign` line for the librange-v3-doc package.
+
+ -- Nicholas Guriev <guriev-ns@ya.ru>  Fri, 23 Feb 2018 22:40:10 +0300
+
+range-v3 (0.3.0-1) unstable; urgency=low
+
+  * Initial release (closes: #883235)
+
+ -- Nicholas Guriev <guriev-ns@ya.ru>  Thu, 07 Dec 2017 22:37:52 +0300
