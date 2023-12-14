@@ -1,4 +1,29 @@
 #!/usr/bin/make -f
 
+EXTRA_CMAKE_VARIABLES = \
+	CMAKE_INSTALL_LIBDIR=lib \
+	RANGE_V3_HEADER_CHECKS=ON \
+	RANGES_NATIVE=OFF \
+	RANGES_VERBOSE_BUILD=ON
+
 %:
 	dh $@
+
+override_dh_auto_configure:
+	dh_auto_configure -- $(EXTRA_CMAKE_VARIABLES:%=-D%)
+
+# Range-v3 is header library so we should make only online documentation unless
+# the `nodoc` flag is specified.
+override_dh_auto_build:
+ifeq (,$(filter nodoc, $(DEB_BUILD_OPTIONS)))
+	dh_auto_build -- range-v3-doc
+endif
+
+# The `test` target doesn't compile tests by itself and fails if they aren't
+# built before. Build the tests if only the `nocheck` flag is absent.
+override_dh_auto_test:
+	dh_auto_build
+	dh_auto_test
+
+override_dh_installchangelogs:
+	dh_installchangelogs doc/release_notes.md
